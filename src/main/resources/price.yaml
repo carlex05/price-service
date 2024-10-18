@@ -1,0 +1,82 @@
+openapi: 3.0.1
+info:
+  title: Price Service API
+  description: API to query product prices
+  version: 1.0.0
+  contact: 
+    name: Carlex
+    email: carlosramirez05@gmail.com
+    url: https://dev.seart.dev
+servers:
+  - url: http://localhost:8080
+paths:
+  /prices:
+    get:
+      summary: Get the applicable price for a product
+      operationId: getPrices
+      parameters:
+        - in: query
+          name: applicationDate
+          schema:
+            type: string
+            format: date-time
+          required: true
+          description: Application date in ISO 8601 format
+        - in: query
+          name: productId
+          schema:
+            type: integer
+          required: true
+          description: Product identifier
+        - in: query
+          name: brandId
+          schema:
+            type: integer
+          required: true
+          description: Brand identifier
+      responses:
+        '200':
+          description: Price found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceResponse'
+        '404':
+          description: Price not found
+components:
+  schemas:
+    PriceResponse:
+      type: object
+      properties:
+        productId:
+          type: integer
+          description: Product identifier
+        brandId:
+          type: integer
+          description: Brand identifier
+        priceList:
+          type: integer
+          description: Identifier of the applied rate
+        startDate:
+          type: string
+          format: date-time
+          description: Start date of the applied rate
+        endDate:
+          type: string
+          format: date-time
+          description: End date of the applied rate
+        price:
+          type: number
+          format: double
+          description: Final applied price
+        currency:
+          type: string
+          description: Currency in which the price is expressed
+      required:
+        - productId
+        - brandId
+        - priceList
+        - startDate
+        - endDate
+        - price
+        - currency

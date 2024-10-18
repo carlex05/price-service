@@ -16,7 +16,6 @@
     <url/>
     <properties>
         <java.version>17</java.version>
-        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
     </properties>
     <dependencies>
         <dependency>
@@ -53,15 +52,6 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>17</source>
-                    <target>17</target>
-                    <generatedSourcesDirectory>${project.build.directory}/generated-sources/openapi/src/main/java</generatedSourcesDirectory>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
@@ -79,7 +69,6 @@
                 <version>7.2.0</version>
                 <executions>
                     <execution>
-                        <id>generate-api</id>
                         <goals>
                             <goal>generate</goal>
                         </goals>
@@ -89,6 +78,8 @@
                             <apiPackage>com.inditex.priceservice.infrastructure.generated.api</apiPackage>
                             <modelNameSuffix>Dto</modelNameSuffix>
                             <modelPackage>com.inditex.priceservice.infrastructure.generated.model</modelPackage>
+                            <generateModels>true</generateModels>
+                            <generateApis>true</generateApis>
                             <configOptions>
                                 <interfaceOnly>true</interfaceOnly>
                                 <useSpringBoot3>true</useSpringBoot3>

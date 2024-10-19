@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.Instant;
 
 public record Price(
-        Long brandId,
+        Integer brandId,
         Instant startDate,
         Instant endDate,
         Long priceList,

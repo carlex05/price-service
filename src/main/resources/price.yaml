@@ -26,12 +26,14 @@ paths:
           name: productId
           schema:
             type: integer
+            format: int64
           required: true
           description: Product identifier
         - in: query
           name: brandId
           schema:
             type: integer
+            format: int32
           required: true
           description: Brand identifier
       responses:
@@ -50,13 +52,20 @@ components:
       properties:
         productId:
           type: integer
+          format: int64
           description: Product identifier
         brandId:
           type: integer
+          format: int32
           description: Brand identifier
         priceList:
           type: integer
+          format: int64
           description: Identifier of the applied rate
+        priority:
+          type: integer
+          format: int32
+          description: Priority of the rate
         startDate:
           type: string
           format: date-time
@@ -66,8 +75,8 @@ components:
           format: date-time
           description: End date of the applied rate
         price:
-          type: number
-          format: double
+          type: string
+          format: decimal
           description: Final applied price
         currency:
           type: string
@@ -76,6 +85,7 @@ components:
         - productId
         - brandId
         - priceList
+        - priority
         - startDate
         - endDate
         - price

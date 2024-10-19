@@ -5,7 +5,7 @@ import com.inditex.priceservice.infrastructure.generated.model.PriceResponseDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.OffsetDateTime;
+import java.time.Instant;
 
 /**
  *
@@ -16,7 +16,7 @@ public class PriceController implements DefaultApi {
 
 
     @Override
-    public ResponseEntity<PriceResponseDto> getPrices(OffsetDateTime applicationDate, Integer productId, Integer brandId) {
+    public ResponseEntity<PriceResponseDto> getPrices(Instant applicationDate, Long productId, Integer brandId) {
         return null;
     }
 }

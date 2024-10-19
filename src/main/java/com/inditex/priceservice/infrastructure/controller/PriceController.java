@@ -23,7 +23,7 @@ public class PriceController implements DefaultApi {
     @Override
     public ResponseEntity<PriceResponseDto> getPrices(Instant applicationDate, Long productId, Integer brandId) {
         var applicablePrice = priceQuery.getPriceForProductBrandAndDate(new PricesFilter(applicationDate, productId, brandId));
-        return ResponseEntity.ok(applicablePrice.map(price -> new PriceResponseDto(
+        return applicablePrice.map(price -> ResponseEntity.ok(new PriceResponseDto(
                 price.productId(),
                 price.brandId(),
                 price.priceList(),
@@ -32,6 +32,6 @@ public class PriceController implements DefaultApi {
                 price.endDate(),
                 price.price(),
                 price.currency()
-        )).get());
+        ))).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

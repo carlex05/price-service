@@ -73,4 +73,20 @@ class PriceControllerTest {
                 .andExpect(jsonPath("$.price").value(35.50));
     }
 
+    @Test
+    void givenValidRequestForNonExistingPrice_whenGetPrices_thenAnswer404Code() throws Exception {
+        Instant applicationDate = Instant.parse("2020-06-14T21:00:00Z");
+        Long productId = 35455L;
+        Integer brandId = 1;
+        PricesFilter filter = new PricesFilter(applicationDate, productId, brandId);
+
+        when(priceQuery.getPriceForProductBrandAndDate(filter)).thenReturn(Optional.empty());
+
+        mockMvc.perform(get("/prices")
+                        .param("applicationDate", "2020-06-14T21:00:00Z")
+                        .param("productId", productId.toString())
+                        .param("brandId", brandId.toString()))
+                .andExpect(status().isNotFound());
+    }
+
 }

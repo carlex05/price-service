@@ -1,7 +1,7 @@
 package com.inditex.priceservice.infrastructure.controller;
 
 import com.inditex.priceservice.domain.model.Price;
-import com.inditex.priceservice.domain.model.PricesFilter;
+import com.inditex.priceservice.domain.model.PriceFilter;
 import com.inditex.priceservice.domain.usecase.PriceQuery;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +13,9 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.util.List;
 import java.util.Optional;
 
 import static org.hamcrest.Matchers.containsString;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -45,11 +42,11 @@ class PriceControllerTest {
 
     @Test
     void givenValidRequestForExistingPrice_whenGetPrices_thenAnswer200Code() throws Exception {
-        Instant applicationDate = Instant.parse("2020-06-14T10:00:00Z");
+        var applicationDate = Instant.parse("2020-06-14T10:00:00Z");
         Long productId = 35455L;
         Integer brandId = 1;
-        PricesFilter filter = new PricesFilter(applicationDate, productId, brandId);
-        Price price = new Price(
+        var filter = new PriceFilter(applicationDate, productId, brandId);
+        var price = new Price(
                 brandId,
                 applicationDate,
                 applicationDate.plusSeconds(3600),
@@ -75,10 +72,10 @@ class PriceControllerTest {
 
     @Test
     void givenValidRequestForNonExistingPrice_whenGetPrices_thenAnswer404Code() throws Exception {
-        Instant applicationDate = Instant.parse("2020-06-14T21:00:00Z");
+        var applicationDate = Instant.parse("2020-06-14T21:00:00Z");
         Long productId = 35455L;
         Integer brandId = 1;
-        PricesFilter filter = new PricesFilter(applicationDate, productId, brandId);
+        var filter = new PriceFilter(applicationDate, productId, brandId);
 
         when(priceQuery.getPriceForProductBrandAndDate(filter)).thenReturn(Optional.empty());
 

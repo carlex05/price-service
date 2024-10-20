@@ -4,7 +4,6 @@ import com.inditex.priceservice.domain.model.PriceFilter;
 import com.inditex.priceservice.domain.usecase.PriceQuery;
 import com.inditex.priceservice.infrastructure.generated.api.DefaultApi;
 import com.inditex.priceservice.infrastructure.generated.model.PriceResponseDto;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,10 +14,13 @@ import java.time.Instant;
  * @author cgomezr
  */
 @RestController
-@RequiredArgsConstructor
 public class PriceController implements DefaultApi {
 
     private final PriceQuery priceQuery;
+
+    PriceController(final PriceQuery priceQuery) {
+        this.priceQuery = priceQuery;
+    }
 
     @Override
     public ResponseEntity<PriceResponseDto> getPrices(Instant applicationDate, Long productId, Integer brandId) {

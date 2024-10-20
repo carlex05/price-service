@@ -25,7 +25,7 @@ public class PriceQueryUseCase implements PriceQuery {
     public Optional<Price> getPriceForProductBrandAndDate(PriceFilter filter) {
         if(filter == null || !validator.validate(filter).isEmpty())
             throw new IllegalArgumentException();
-        return priceRepository.findMostPriorityPriceForProductBrandAndDate(filter);
+        return priceRepository.findTopPriorityByProductBrandAndDate(filter);
     }
 
 }

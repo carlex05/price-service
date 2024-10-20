@@ -7,6 +7,6 @@ import java.util.Optional;
 
 public interface PriceRepository {
 
-    Optional<Price> findMostPriorityPriceForProductBrandAndDate(PriceFilter id);
+    Optional<Price> findTopPriorityByProductBrandAndDate(PriceFilter filter);
 
 }

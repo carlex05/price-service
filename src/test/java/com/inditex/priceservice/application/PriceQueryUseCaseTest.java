@@ -59,7 +59,7 @@ class PriceQueryUseCaseTest {
                 1L,
                 1
         );
-        Mockito.when(repository.findMostPriorityPriceForProductBrandAndDate(filter))
+        Mockito.when(repository.findTopPriorityByProductBrandAndDate(filter))
                 .thenReturn(Optional.empty());
         var actual = priceQueryUseCase.getPriceForProductBrandAndDate(filter);
         assertTrue(actual.isEmpty());
@@ -84,7 +84,7 @@ class PriceQueryUseCaseTest {
                 1L,
                 1
         );
-        Mockito.when(repository.findMostPriorityPriceForProductBrandAndDate(filter)).thenReturn(Optional.of(price));
+        Mockito.when(repository.findTopPriorityByProductBrandAndDate(filter)).thenReturn(Optional.of(price));
         var actual = priceQueryUseCase.getPriceForProductBrandAndDate(filter);
         assertTrue(actual.isPresent());
         assertEquals(price.price(), actual.get().price());

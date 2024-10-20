@@ -61,4 +61,20 @@ class PriceRepositoryImplTest {
                 && priceEntityOptional.get().endDate().compareTo(applicationDate) >= 0);
     }
 
+    @Test
+    void givenFilterForNonApplicablePrices_whenFindTopPriorityByProductBrandAndDate_thenReturnPriceList1() {
+        var applicationDate = Instant.parse("2020-06-13T10:00:00Z");
+        var productId = 35455L;
+        var brandId = 1;
+
+        var priceEntityOptional = repository.findTopPriorityByProductBrandAndDate(new PriceFilter(
+                applicationDate,
+                productId,
+                brandId
+        ));
+
+        assertTrue(priceEntityOptional.isEmpty());
+
+    }
+
 }

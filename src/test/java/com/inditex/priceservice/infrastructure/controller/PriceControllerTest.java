@@ -32,7 +32,7 @@ class PriceControllerTest {
 
     @Test
     void givenBadApplicationDate_whenGetPrices_thenAnswer400Code() throws Exception {
-        mockMvc.perform(get("/prices")
+        mockMvc.perform(get("/prices/applicable")
                         .param("applicationDate", "invalid-date")
                         .param("productId", "35455")
                         .param("brandId", "1"))
@@ -58,7 +58,7 @@ class PriceControllerTest {
         );
 
         when(priceQuery.getPriceForProductBrandAndDate(filter)).thenReturn(Optional.of(price));
-        mockMvc.perform(get("/prices")
+        mockMvc.perform(get("/prices/applicable")
                         .param("applicationDate", "2020-06-14T10:00:00Z")
                         .param("productId", productId.toString())
                         .param("brandId", brandId.toString()))
@@ -79,7 +79,7 @@ class PriceControllerTest {
 
         when(priceQuery.getPriceForProductBrandAndDate(filter)).thenReturn(Optional.empty());
 
-        mockMvc.perform(get("/prices")
+        mockMvc.perform(get("/prices/applicable")
                         .param("applicationDate", "2020-06-14T21:00:00Z")
                         .param("productId", productId.toString())
                         .param("brandId", brandId.toString()))

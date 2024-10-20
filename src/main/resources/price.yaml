@@ -10,10 +10,10 @@ info:
 servers:
   - url: http://localhost:8080
 paths:
-  /prices:
+  /prices/applicable:
     get:
       summary: Get the applicable price for a product
-      operationId: getPrices
+      operationId: getApplicablePrice
       parameters:
         - in: query
           name: applicationDate

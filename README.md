@@ -94,6 +94,8 @@ mvn clean test
 
 Test results will be displayed in the console.
 
+You can find a postman collection to test this running service in the file `price-service.postman_collection.json`.
+
 ## API Documentation
 
 The application follows an **API First** approach, using an OpenAPI specification to define the API contract. The OpenAPI specification is located at `src/main/resources/price.yaml`.

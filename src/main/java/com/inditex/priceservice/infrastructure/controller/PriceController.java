@@ -2,6 +2,7 @@ package com.inditex.priceservice.infrastructure.controller;
 
 import com.inditex.priceservice.domain.model.PriceFilter;
 import com.inditex.priceservice.domain.usecase.PriceQuery;
+import com.inditex.priceservice.infrastructure.controller.exception.NoPriceFoundException;
 import com.inditex.priceservice.infrastructure.generated.api.DefaultApi;
 import com.inditex.priceservice.infrastructure.generated.model.PriceResponseDto;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +35,6 @@ public class PriceController implements DefaultApi {
                 price.endDate(),
                 price.price(),
                 price.currency()
-        ))).orElseGet(() -> ResponseEntity.notFound().build());
+        ))).orElseThrow(() -> new NoPriceFoundException("No price found for the given parameters"));
     }
 }

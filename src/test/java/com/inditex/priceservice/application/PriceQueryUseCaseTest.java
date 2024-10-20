@@ -25,6 +25,26 @@ class PriceQueryUseCaseTest {
     }
 
     @Test
+    void givenNoApplicationDate_whenGetPriceForProductBrandAndDate_thenThrowsIllegalArgumentException() {
+        var priceQueryUseCase = new PriceQueryUseCase(null);
+        assertThrows(IllegalArgumentException.class, () -> priceQueryUseCase.getPriceForProductBrandAndDate(new PriceFilter(
+                null,
+                1L,
+                1
+        )));
+    }
+
+    @Test
+    void givenNoBrandId_whenGetPriceForProductBrandAndDate_thenThrowsIllegalArgumentException() {
+        var priceQueryUseCase = new PriceQueryUseCase(null);
+        assertThrows(IllegalArgumentException.class, () -> priceQueryUseCase.getPriceForProductBrandAndDate(new PriceFilter(
+                Instant.now(),
+                1L,
+                null
+        )));
+    }
+
+    @Test
     void givenNullFilter_whenGetPriceForProductBrandAndDate_thenThrowsIllegalArgumentException() {
         var priceQueryUseCase = new PriceQueryUseCase(null);
         assertThrows(IllegalArgumentException.class, () -> priceQueryUseCase.getPriceForProductBrandAndDate(null));

@@ -1,10 +1,12 @@
 package com.inditex.priceservice.domain.model;
 
+import jakarta.validation.constraints.NotNull;
+
 import java.time.Instant;
 
 public record PriceFilter(
-        Instant applicationAt,
-        Long productId,
-        Integer brandId
+        @NotNull Instant applicationAt,
+        @NotNull Long productId,
+        @NotNull Integer brandId
 ) {
 }

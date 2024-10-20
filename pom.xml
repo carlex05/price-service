@@ -47,6 +47,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>7.0.5.Final</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -87,7 +92,6 @@
                                 <importMapping>Instant=java.time.Instant</importMapping>
                             </importMappings>
                             <configOptions>
-                                <additionalModelTypeAnnotations>@lombok.Data @lombok.AllArgsConstructor</additionalModelTypeAnnotations>
                                 <interfaceOnly>true</interfaceOnly>
                                 <useSpringBoot3>true</useSpringBoot3>
                                 <dateLibrary>custom</dateLibrary>

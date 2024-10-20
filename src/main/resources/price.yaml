@@ -45,6 +45,10 @@ paths:
                 $ref: '#/components/schemas/PriceResponse'
         '404':
           description: Price not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
     PriceResponse:
@@ -90,3 +94,18 @@ components:
         - endDate
         - price
         - currency
+    ErrorResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        status:
+          type: integer
+          format: int32
+        error:
+          type: string
+        message:
+          type: string
+        path:
+          type: string

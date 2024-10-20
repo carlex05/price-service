@@ -1,7 +1,7 @@
 package com.inditex.priceservice.infrastructure.controller;
 
-import com.inditex.priceservice.infrastructure.controller.dto.ErrorResponse;
 import com.inditex.priceservice.infrastructure.controller.exception.NoPriceFoundException;
+import com.inditex.priceservice.infrastructure.generated.model.ErrorResponseDto;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,16 +21,15 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(NoPriceFoundException.class)
-    public ResponseEntity<ErrorResponse> handleNoPriceFoundException(
+    public ResponseEntity<ErrorResponseDto> handleNoPriceFoundException(
             NoPriceFoundException ex, HttpServletRequest request) {
 
-        ErrorResponse errorResponse = new ErrorResponse(
-                Instant.now(),
-                HttpStatus.NOT_FOUND.value(),
-                HttpStatus.NOT_FOUND.getReasonPhrase(),
-                ex.getMessage(),
-                request.getRequestURI()
-        );
+        var errorResponse = new ErrorResponseDto();
+        errorResponse.setTimestamp(Instant.now());
+        errorResponse.setMessage(ex.getMessage());
+        errorResponse.setStatus(HttpStatus.NOT_FOUND.value());
+        errorResponse.setError(HttpStatus.NOT_FOUND.getReasonPhrase());
+        errorResponse.setPath(request.getRequestURI());
 
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }

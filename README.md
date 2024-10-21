@@ -6,6 +6,14 @@ This project is a Price Service application developed in Java using Spring Boot.
 
 The development follows an **API First** approach using **OpenAPI Generator**, and the application has been developed using **Test-Driven Development (TDD)** practices.
 
+Note: To keep this exercise focused and concise, certain production-level features have been intentionally omitted, including:
+
+- **Security**: Authentication and authorization mechanisms (e.g., OAuth 2.0 with Spring Security) have not been implemented. 
+- **Monitoring and Observability**: Tools and practices for monitoring, logging, and tracing (e.g., Spring Boot Actuator, Micrometer) are not included.
+- **Configuration Management**: Externalized configuration using tools like Spring Cloud Config is not set up.
+- **Containerization and Orchestration**: Dockerization and deployment configurations for orchestration platforms like Kubernetes are not provided.
+- **Database Migrations**: Managing database schema changes with Flyway for version-controlled migrations.
+
 ## Technologies Used
 
 - **Java 17**
